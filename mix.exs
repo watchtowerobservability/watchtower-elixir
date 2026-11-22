@@ -4,7 +4,7 @@ defmodule Watchtower.MixProject do
   def project do
     [
       app: :watchtower,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.15",
       deps: deps(),
       description: "Thin Watchtower distribution over OpenTelemetry Erlang/Elixir",
@@ -22,6 +22,9 @@ defmodule Watchtower.MixProject do
       {:opentelemetry_api, "~> 1.4"},
       {:opentelemetry, "~> 1.5"},
       {:opentelemetry_exporter, "~> 1.8"},
+      # logs and metrics SDKs of OTel Erlang (Apache-2.0); still published as experimental
+      {:opentelemetry_api_experimental, "~> 0.5"},
+      {:opentelemetry_experimental, "~> 0.5"},
       {:telemetry, "~> 1.0"},
       {:plug, "~> 1.16", optional: true},
       {:oban, "~> 2.17", optional: true}
