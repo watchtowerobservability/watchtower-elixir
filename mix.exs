@@ -15,7 +15,7 @@ defmodule Watchtower.MixProject do
     ]
   end
 
-  def application, do: [extra_applications: [:logger]]
+  def application, do: [extra_applications: [:logger, mnesia: :optional]]
 
   defp deps do
     [

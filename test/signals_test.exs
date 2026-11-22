@@ -69,7 +69,7 @@ defmodule Watchtower.SignalsTest do
   test "metrics reader exports OTLP with delta temporality for counters and histograms" do
     c = Watchtower.Config.new(service: "s", key: "wtk_fake")
     [readers: [%{module: :otel_metric_reader, config: r}]] = Watchtower.Config.metrics_env(c)
-    assert {:otel_exporter_metrics_otlp, %{endpoints: ["http://localhost:4318/v1/metrics"], headers: [_]}} = r.exporter
+    assert {:otel_exporter_metrics_otlp, %{endpoints: ["http://localhost:4318"], headers: [_]}} = r.exporter
     assert r.default_temporality_mapping.counter == :temporality_delta
     assert r.default_temporality_mapping.histogram == :temporality_delta
     assert r.default_temporality_mapping.updown_counter == :temporality_cumulative

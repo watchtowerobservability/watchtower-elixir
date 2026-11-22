@@ -26,13 +26,12 @@ defmodule Watchtower.Logs do
 
   @doc false
   def handler_config(c, level) do
+    # otel_log_handler reads these from the top level of the handler map, not from `config:`
     %{
       level: level,
-      config: %{
-        exporter: Watchtower.Config.signal_exporter(c, :logs),
-        scheduled_delay_ms: env_int("OTEL_BLRP_SCHEDULE_DELAY", 1_000),
-        exporting_timeout_ms: env_int("OTEL_BLRP_EXPORT_TIMEOUT", 30_000)
-      }
+      exporter: Watchtower.Config.signal_exporter(c, :logs),
+      scheduled_delay_ms: env_int("OTEL_BLRP_SCHEDULE_DELAY", 1_000),
+      exporting_timeout_ms: env_int("OTEL_BLRP_EXPORT_TIMEOUT", 30_000)
     }
   end
 

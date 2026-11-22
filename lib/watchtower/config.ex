@@ -75,7 +75,8 @@ defmodule Watchtower.Config do
   def signal_exporter(%__MODULE__{} = c, signal) when signal in [:logs, :metrics] do
     url = "#{c.endpoint}/v1/#{signal}"
     mod = if signal == :logs, do: :otel_exporter_logs_otlp, else: :otel_exporter_metrics_otlp
-    opts = %{endpoints: [url], headers: headers(c), protocol: :http_protobuf}
+    # the OTLP exporters append /v1/<signal> to the endpoint themselves; `url` is the full spool replay target
+    opts = %{endpoints: [c.endpoint], headers: headers(c), protocol: :http_protobuf}
 
     case c.spool_dir do
       nil ->
